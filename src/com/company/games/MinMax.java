@@ -47,7 +47,8 @@ public class MinMax {
                 maximum = number;
         }
 
-        System.out.printf("Det största talet är %d och det minsta talet är %d", maximum, minimum);
+        System.out.println("Min value: " + minimum);
+        System.out.println("Max value: " + maximum);
 
     }
 }
