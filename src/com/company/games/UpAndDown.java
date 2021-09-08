@@ -8,10 +8,6 @@ public class UpAndDown {
 
     static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        start();
-    }
-
     public static void start() {
         System.out.println(
             """
@@ -27,7 +23,7 @@ public class UpAndDown {
         
     }
 
-    public static void play() {
+    private static void play() {
         ArrayList<String> words = new ArrayList<String>();
         boolean nextWord = true;        //inputting, typing, addWord, addingWords
 
