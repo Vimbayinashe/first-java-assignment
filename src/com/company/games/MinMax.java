@@ -1,5 +1,6 @@
 package com.company.games;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MinMax {
@@ -29,9 +30,14 @@ public class MinMax {
         int minimum = Integer.MAX_VALUE;
 
         while (count < 5) {
-            int input = scanner.nextInt();
-            numbers[count] = input;
-            ++count;
+            try {
+                int input = scanner.nextInt();
+                numbers[count] = input;
+                ++count;
+            } catch (InputMismatchException ignored) {
+                System.out.println("Vänligen skriv in ett heltal.");
+                scanner.nextLine();
+            }
         }
 
         for (int number : numbers) {
