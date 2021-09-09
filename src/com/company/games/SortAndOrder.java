@@ -24,15 +24,10 @@ public class SortAndOrder {
     }
 
     private static void play() {
-        //läsa in en sträng som innehåller 5 tal
         Scanner scanner = new Scanner(System.in);
         boolean invalid;
-        boolean sorted = true;
-        int maximum = Integer.MIN_VALUE;
-        int maximum2 = Integer.MIN_VALUE + 1;
-        int minimum = Integer.MAX_VALUE;
-        int minimum2 = Integer.MAX_VALUE - 1;
-        int sum  = 0;
+        boolean sorted;
+        int sum = 0;
         int[] numbers = new int[5];
 
         do {
@@ -59,118 +54,53 @@ public class SortAndOrder {
 
         } while (invalid);
 
-//        minimum = numbers[0];
-//        nextMaximum = numbers[0];
+        sorted = isSorted(numbers);
+        sortArrayOfIntegers(numbers);
+        sum = sum(numbers);
+        print(sorted, sum, numbers);
 
+    }
 
-        //LOOP - place numbers in order
+    private static int sum(int[] numbers) {
+        int sum = 0;
+        for (int number: numbers) {
+            sum += number;
+        }
+        return sum;
+    }
+
+    private static void sortArrayOfIntegers(int[] numbers) {
         for (int i = 0; i < numbers.length; i++) {
 
-            for (int j = i + 1; j < numbers.length ; j++) {
-                //check if i (preceding) is greater than each of the next integers
-                //replace i with smaller index & j with greater index
+            for (int j = i + 1; j < numbers.length; j++) {
 
                 if (numbers[i] > numbers[j]) {
                     int placeholder = numbers[i];
                     numbers[i] = numbers[j];
                     numbers[j] = placeholder;
                 }
+
             }
 
-            sum += numbers[i];
-
-            System.out.println(numbers[i]);
         }
+    }
 
+    private static boolean isSorted(int[] numbers) {
         for (int i = 0; i < numbers.length - 1; i++) {
-            //where numbers not sorted: sorted = false
             if (numbers[i] > numbers[i + 1]) {
-                sorted = false;
-                break;
+                return false;
             }
         }
+        return true;
+    }
 
-
-//        for (int number : numbers) {
-//            System.out.println(number);
-//        }
-
+    private static void print(boolean sorted, int sum, int[] numbers) {
         System.out.println("Min value: " + numbers[0]);
         System.out.println("Min2 value: " + numbers[1]);
         System.out.println("Max2 value: " + numbers[numbers.length - 2]);
         System.out.println("Max value: " + numbers[numbers.length - 1]);
         System.out.println("I ordning: " + sorted);
         System.out.println("Summa: " + sum);
-
-        // hitta & printa summa
-
     }
 }
 
-/**
- * for (int j = 1; j < numbers.length - 1; j++) {
- * int placeholder;
- * if (i == j)
- *                     continue;
- * if (numbers[i] > numbers[j]) {
- * placeholder = numbers[i];
- * numbers[i] = numbers[j];
- * numbers[j] = placeholder;
- * sorted = false; //todo: sorted here or below?
- * }
- * }
- * <p>
- * if (numbers[i] < minimum2)
- * minimum2 = numbers[i];
- * <p>
- * if (minimum2 < minimum) {
- * int placeholder = minimum;
- * minimum = minimum2;
- * minimum2 = placeholder;
- * }
- * <p>
- * if (numbers[i] > maximum2)
- * maximum2 = numbers[i];
- * <p>
- * if (maximum2 > maximum) {
- * int placeholder = maximum;
- * maximum = maximum2;
- * maximum2 = placeholder;
- * }
- */
-
-/**
- * if (numbers[i] < minimum2)
- *                 minimum2 = numbers[i];
- *
- *             if (minimum2 < minimum) {
- *                 int placeholder = minimum;
- *                 minimum = minimum2;
- *                 minimum2 = placeholder;
- *             }
- *
- *             if (numbers[i] > maximum2)
- *                 maximum2 = numbers[i];
- *
- *             if (maximum2 > maximum) {
- *                 int placeholder = maximum;
- *                 maximum = maximum2;
- *                 maximum2 = placeholder;
- *             }
- */
-
-/**
- * Third attempt:
- *
- *  for (int number : numbers) {
- * //            sum += number;
- * //            if (number < minimum)
- * //                minimum = number;
- * //            if (number > maximum)
- * //                maximum = number;
- * //            if(number > maximum2 && number < maximum)
- * //                maximum2 = number;
- * //            if(number < minimum2 && number > minimum)
- * //                minimum2 = number;
- * //        }
- */

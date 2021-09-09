@@ -47,7 +47,6 @@ public class Main {
             case 2 -> MinMax.start();
             case 3 -> RockPaperScissors.start();
             case 4 -> SortAndOrder.start();
-
         }
 
         //Todo: när körningen är klar ska menyn åter skrivas ut på skärmen så att ett nytt val kan göras => alltså
