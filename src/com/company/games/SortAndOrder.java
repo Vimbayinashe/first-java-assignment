@@ -66,6 +66,18 @@ public class SortAndOrder {
         //LOOP - place numbers in order
         for (int i = 0; i < numbers.length; i++) {
 
+            for (int j = i + 1; j < numbers.length ; j++) {
+                //check if i (preceding) is greater than each of the next integers
+                //replace i with smaller index & j with greater index
+
+                if (numbers[i] > numbers[j]) {
+                    int placeholder = numbers[i];
+                    numbers[i] = numbers[j];
+                    numbers[j] = placeholder;
+                }
+            }
+
+            sum += numbers[i];
 
             System.out.println(numbers[i]);
         }
@@ -83,10 +95,10 @@ public class SortAndOrder {
 //            System.out.println(number);
 //        }
 
-        System.out.println("Min value: " + minimum);
-        System.out.println("Min2 value: " + minimum2);
-        System.out.println("Max value: " + maximum);
-        System.out.println("Max2 value: " + maximum2);
+        System.out.println("Min value: " + numbers[0]);
+        System.out.println("Min2 value: " + numbers[1]);
+        System.out.println("Max2 value: " + numbers[numbers.length - 2]);
+        System.out.println("Max value: " + numbers[numbers.length - 1]);
         System.out.println("I ordning: " + sorted);
         System.out.println("Summa: " + sum);
 
