@@ -6,10 +6,6 @@ import java.util.Scanner;
 
 public class RockPaperScissors {
 
-    public static void main(String[] args) {
-        start();
-    }
-
     static Scanner scanner = new Scanner(System.in);
 
     public static void start() {
@@ -33,101 +29,62 @@ public class RockPaperScissors {
         play();
     }
 
-    enum Options {ROCK, PAPER, SCISSORS}
-
     private static void play() {
         int computerScore = 0;
         int playerScore = 0;
-        char[] options = {'s', 'x', 'p'};
+        String[] options = {"s", "x", "p"};
         Random random = new Random();
 
-        System.out.println("Sten, sax eller påse?");    //todo: remove?
 
-        while (computerScore < 3 || playerScore < 3) {
-            //player enters a move
+        while (computerScore < 3 && playerScore < 3) {
+            System.out.println("Välj sten, sax eller påse...");
+
             String playerInput = (scanner.nextLine()).toLowerCase();
 
-
-            //move is stored or exception handling
-            char playerSelection;
-            boolean valid = false;
-
+            String playerMove;
             if ("s".equals(playerInput) || "x".equals(playerInput) || "p".equals(playerInput)) {
-                playerSelection = playerInput.charAt(0);
-                System.out.println("Spelaren har valt: " + playerSelection);
+                playerMove = selectTool(playerInput);
             } else {
                 System.out.println("Ogiltigt val, försök igen");
                 continue;
             }
 
-            //computer selects a move
-            int randomIndex = random.nextInt(3);
-            char computerSelection = options[randomIndex];
+            String computerSelection = options[random.nextInt(3)];
 
+            System.out.println("Du har valt " + playerMove + " och datorn har valt " + selectTool(computerSelection));
 
-            System.out.println("Datorn har valt: " + computerSelection);
+            boolean computerWins = computerSelection.equals("s") && playerInput.equals("x")
+                    || computerSelection.equals("x") && playerInput.equals("p")
+                    || computerSelection.equals("p") && playerInput.equals("s");
 
-
-            ++playerScore;
-
-            boolean computerWins = computerSelection == 's' && playerSelection == 'x'
-                    || computerSelection == 'x' && playerSelection == 'p'
-                    || computerSelection == 'p' && playerSelection == 's';
-//            boolean playerWins = playerInput.equals("s") &&
-
-            //comparison of computer vs player moves
-            if (computerSelection == playerSelection)
-                System.out.println("Datorn och spelare har gjort samma val.\n");
-            else if (computerWins) {
-                System.out.println("Datorn har vunnit denna omgång!\n");
+            if (computerSelection.equals(playerInput)) {
+                System.out.println("Datorn och spelare har gjort samma val.");
+            } else if (computerWins) {
+                System.out.println("Datorn har vunnit denna omgång!");
                 ++computerScore;
             } else {
-                System.out.println("Du har vunnit denna omgång!\n");
+                System.out.println("Du har vunnit denna omgång!");
                 ++playerScore;
             }
 
-            //sout omgångens resultat & poängställningen för båda  & begäran att välja igen
+            System.out.println("Du har " + playerScore + " poäng och datorn har " + computerScore + " poäng.\n");
 
-            // if winner gets 1 point
-
-            //repeat play until one has 3 points
         }
 
-        //congrats message to winner
-
+        if (computerScore > playerScore)
+            System.out.println("Datorn har vunnit spelet!");
+        else
+            System.out.println("Grattis! Du har vunnit spelet!");
 
     }
 
-    private static void invalidGuess() {
-        System.out.println("Ogiltigt val, försök igen");
-        scanner.nextLine();
+    private static String selectTool(String playerInput) {
+        return switch (playerInput) {
+            case "s" -> "sten";
+            case "x" -> "sax";
+            case "p" -> "påse";
+            default -> "ogiltigt";
+        };
     }
 
-    /**
-     *   Options[] options = {Options.ROCK, Options.PAPER, Options.SCISSORS};
-     *         Random random = new Random();
-     *
-     *         while (computerScore < 3 || playerScore < 3)  {
-     *             int randomIndex = random.nextInt(3);
-     *
-     *             System.out.println("Datorn har gjort sitt val. Det är din tur...");
-     *
-     *             String playerInput = scanner.nextLine();
-     *
-     *             if (playerInput.toLowerCase() == "s")
-     *
-     *             Options playerGuess;
-     *
-     *
-     *
-     *             switch (playerInput.toLowerCase()) {
-     *                 case "r" -> playerGuess = Options.ROCK;
-     *                 case "p" -> playerGuess = Options.PAPER;
-     *                 case "s" -> playerGuess = Options.SCISSORS;
-     *                 default -> invalidGuess();
-     *             };
-     *             //todo: how do we handle invalid input
-     *
-     *         }
-     */
 }
