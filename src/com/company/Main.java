@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.games.MinMax;
+import com.company.games.RockPaperScissors;
 import com.company.games.UpAndDown;
 
 import java.util.Scanner;
@@ -40,7 +42,9 @@ public class Main {
 
 
         switch (selectedGame) {
-            case 1, 2 -> UpAndDown.start();
+            case 1 -> UpAndDown.start();
+            case 2 -> MinMax.start();
+            case 3 -> RockPaperScissors.start();
 
         }
 
