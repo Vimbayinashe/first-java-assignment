@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.games.MinMax;
 import com.company.games.RockPaperScissors;
+import com.company.games.SortAndOrder;
 import com.company.games.UpAndDown;
 
 import java.util.Scanner;
@@ -45,6 +46,7 @@ public class Main {
             case 1 -> UpAndDown.start();
             case 2 -> MinMax.start();
             case 3 -> RockPaperScissors.start();
+            case 4 -> SortAndOrder.start();
 
         }
 
