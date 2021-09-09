@@ -29,9 +29,10 @@ public class SortAndOrder {
         boolean invalid;
         boolean sorted = true;
         int maximum = Integer.MIN_VALUE;
-        int maximum2 = Integer.MIN_VALUE;
+        int maximum2 = Integer.MIN_VALUE + 1;
         int minimum = Integer.MAX_VALUE;
-        int minimum2 = Integer.MAX_VALUE;
+        int minimum2 = Integer.MAX_VALUE - 1;
+        int sum  = 0;
         int[] numbers = new int[5];
 
         do {
@@ -63,6 +64,12 @@ public class SortAndOrder {
 
 
         //LOOP - place numbers in order
+        for (int i = 0; i < numbers.length; i++) {
+
+
+            System.out.println(numbers[i]);
+        }
+
         for (int i = 0; i < numbers.length - 1; i++) {
             //where numbers not sorted: sorted = false
             if (numbers[i] > numbers[i + 1]) {
@@ -72,26 +79,16 @@ public class SortAndOrder {
         }
 
 
-        for (int number : numbers) {
-            if (number < minimum)
-                minimum = number;
-            if (number > maximum)
-                maximum = number;
-            if(number > maximum2 && number < maximum)
-                maximum2 = number;
-            if(number < minimum2 && number > minimum)
-                minimum2 = number;
-        }
-
-        for (int number : numbers) {
-            System.out.println(number);
-        }
+//        for (int number : numbers) {
+//            System.out.println(number);
+//        }
 
         System.out.println("Min value: " + minimum);
-//        System.out.println("Min2 value: " + minimum2);
+        System.out.println("Min2 value: " + minimum2);
         System.out.println("Max value: " + maximum);
-//        System.out.println("Max2 value: " + maximum2);
-        System.out.println("I ordning: " + false);
+        System.out.println("Max2 value: " + maximum2);
+        System.out.println("I ordning: " + sorted);
+        System.out.println("Summa: " + sum);
 
         // hitta & printa summa
 
@@ -148,4 +145,20 @@ public class SortAndOrder {
  *                 maximum = maximum2;
  *                 maximum2 = placeholder;
  *             }
+ */
+
+/**
+ * Third attempt:
+ *
+ *  for (int number : numbers) {
+ * //            sum += number;
+ * //            if (number < minimum)
+ * //                minimum = number;
+ * //            if (number > maximum)
+ * //                maximum = number;
+ * //            if(number > maximum2 && number < maximum)
+ * //                maximum2 = number;
+ * //            if(number < minimum2 && number > minimum)
+ * //                minimum2 = number;
+ * //        }
  */
