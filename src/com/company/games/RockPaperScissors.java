@@ -1,12 +1,15 @@
 package com.company.games;
 
-import javax.tools.Tool;
 import java.util.Random;
 import java.util.Scanner;
 
 public class RockPaperScissors {
 
     static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        start();
+    }
 
     public static void start() {
         instructions();
@@ -43,59 +46,39 @@ public class RockPaperScissors {
             System.out.println("Välj sten, sax eller påse...");
 
             String playerInput = (scanner.nextLine()).toLowerCase();
-//            boolean invalidTool = checkInvalidTool(playerInput);
-
-            // converting to enum
             Tool playerChoice;
 
             try {
-                playerChoice = tool(playerInput);
+                playerChoice = selectTool(playerInput);
             } catch (RuntimeException ignored) {
-                System.out.println("Ogiltigt val, försök igen");
+                System.out.println("Ogiltigt val, försök igen!");
                 continue;
             }
 
-//            if (invalidTool)
-//                continue;
-
             String computerInput = options[random.nextInt(3)];
-            Tool computerChoice = tool(computerInput);
+            Tool computerChoice = selectTool(computerInput);
 
-//            printPlayersChoices(playerInput, computerSelection);
+            boolean computerWins = computerWins(computerChoice, playerChoice);
+            boolean draw = computerChoice.equals(playerChoice);
 
-            System.out.println("Du har valt " + playerChoice + " och datorn har valt " + selectTool(computerInput));
-
-            //todo: egen metod
-            boolean computerWins = computerInput.equals("s") && playerInput.equals("x")
-                    || computerInput.equals("x") && playerInput.equals("p")
-                    || computerInput.equals("p") && playerInput.equals("s");
-
-            //todo: egen metod för if-sats
-            if (computerInput.equals(playerInput)) {
-                System.out.println("Datorn och spelare har gjort samma val.");
-            } else if (computerWins) {
-                System.out.println("Datorn har vunnit denna omgång!");
+            if (computerWins)
                 ++computerScore;
-            } else {
-                System.out.println("Du har vunnit denna omgång!");
+            else
                 ++playerScore;
-            }
 
-            System.out.println("Du har " + playerScore + " poäng och datorn har " + computerScore + " poäng.\n");
+            printChoices(playerChoice, computerChoice);
+            printCurrentResult(computerWins, draw);
+            printPoints(computerScore, playerScore);
 
         }
 
-        if (computerScore > playerScore)
-            System.out.println("Datorn har vunnit spelet!");
-        else
-            System.out.println("Grattis! Du har vunnit spelet!");
+        printFinalResult(computerScore, playerScore);
 
     }
 
     enum Tool { ROCK, PAPER, SCISSORS }
 
-    //converting guess to a valid tool
-    private static Tool tool(String input) {
+    private static Tool selectTool(String input) {
         return switch (input) {
             case "s" -> Tool.ROCK;
             case "x" -> Tool.SCISSORS;
@@ -104,18 +87,47 @@ public class RockPaperScissors {
         };
     }
 
-    private static String selectTool(String playerInput) {
-        return switch (playerInput) {
-            case "s" -> "sten";
-            case "x" -> "sax";
-            case "p" -> "påse";
-            default -> "ogiltigt";
-            //String har många flera kombinationer som måste hanteras eller testa att använda en enum
+    private static boolean computerWins(Tool computerChoice, Tool playerChoice) {
+        return computerChoice.equals(Tool.ROCK) && playerChoice.equals(Tool.SCISSORS) ||
+                computerChoice.equals(Tool.SCISSORS) && playerChoice.equals(Tool.PAPER) ||
+                computerChoice.equals(Tool.PAPER) && playerChoice.equals(Tool.ROCK);
+    }
+
+    private static String toolInSwedish(Tool tool) {
+        return switch (tool) {
+            case ROCK -> "sten";
+            case SCISSORS -> "sax";
+            case PAPER -> "påse";
         };
     }
 
-    public static void main(String[] args) {
-        play();
+    private static void printChoices(Tool playerChoice, Tool computerChoice) {
+        System.out.println(
+                "Du har valt " + toolInSwedish(playerChoice) +
+                " och datorn har valt " + toolInSwedish(computerChoice) + "."
+        );
+    }
+
+    private static void printCurrentResult(boolean computerWins, boolean draw) {
+        if (draw) {
+            System.out.println("Datorn och spelare har gjort samma val.");
+        } else if (computerWins) {
+            System.out.println("Datorn har vunnit denna omgång!");
+
+        } else {
+            System.out.println("Du har vunnit denna omgång!");
+        }
+    }
+
+    private static void printPoints(int computerScore, int playerScore) {
+        System.out.println("Du har " + playerScore + " poäng och datorn har " + computerScore + " poäng.\n");
+    }
+
+    private static void printFinalResult(int computerScore, int playerScore) {
+        if (computerScore > playerScore)
+            System.out.println("Datorn har vunnit spelet!");
+        else
+            System.out.println("Grattis! Du har vunnit spelet!");
     }
 
 }
