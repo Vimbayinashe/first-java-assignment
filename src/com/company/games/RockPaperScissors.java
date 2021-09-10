@@ -1,6 +1,6 @@
 package com.company.games;
 
-import java.util.Arrays;
+import javax.tools.Tool;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -9,24 +9,27 @@ public class RockPaperScissors {
     static Scanner scanner = new Scanner(System.in);
 
     public static void start() {
+        instructions();
+        play();
+    }
+
+    private static void instructions() {
         System.out.println(
                 """
-                        Spela sten, sax eller påse!
-                                        
-                        Regler:
-                        Du spelar mot datorn och först till 3 vinster vinner.
-                        Sten vinner över sax.
-                        Sax vinner över påse.
-                        Påse vinner över sten.
-                                        
-                        Tryck S, X eller P för att välja:
-                        S - sten
-                        X - sax
-                        P - påse
-                        """
+                Spela sten, sax eller påse!
+                                
+                Regler:
+                Du spelar mot datorn och först till 3 vinster vinner.
+                Sten vinner över sax.
+                Sax vinner över påse.
+                Påse vinner över sten.
+                                
+                Tryck S, X eller P för att välja:
+                S - sten
+                X - sax
+                P - påse
+                """
         );
-
-        play();
     }
 
     private static void play() {
@@ -40,24 +43,35 @@ public class RockPaperScissors {
             System.out.println("Välj sten, sax eller påse...");
 
             String playerInput = (scanner.nextLine()).toLowerCase();
+//            boolean invalidTool = checkInvalidTool(playerInput);
 
-            String playerMove;
-            if ("s".equals(playerInput) || "x".equals(playerInput) || "p".equals(playerInput)) {
-                playerMove = selectTool(playerInput);
-            } else {
+            // converting to enum
+            Tool playerChoice;
+
+            try {
+                playerChoice = tool(playerInput);
+            } catch (RuntimeException ignored) {
                 System.out.println("Ogiltigt val, försök igen");
                 continue;
             }
 
-            String computerSelection = options[random.nextInt(3)];
+//            if (invalidTool)
+//                continue;
 
-            System.out.println("Du har valt " + playerMove + " och datorn har valt " + selectTool(computerSelection));
+            String computerInput = options[random.nextInt(3)];
+            Tool computerChoice = tool(computerInput);
 
-            boolean computerWins = computerSelection.equals("s") && playerInput.equals("x")
-                    || computerSelection.equals("x") && playerInput.equals("p")
-                    || computerSelection.equals("p") && playerInput.equals("s");
+//            printPlayersChoices(playerInput, computerSelection);
 
-            if (computerSelection.equals(playerInput)) {
+            System.out.println("Du har valt " + playerChoice + " och datorn har valt " + selectTool(computerInput));
+
+            //todo: egen metod
+            boolean computerWins = computerInput.equals("s") && playerInput.equals("x")
+                    || computerInput.equals("x") && playerInput.equals("p")
+                    || computerInput.equals("p") && playerInput.equals("s");
+
+            //todo: egen metod för if-sats
+            if (computerInput.equals(playerInput)) {
                 System.out.println("Datorn och spelare har gjort samma val.");
             } else if (computerWins) {
                 System.out.println("Datorn har vunnit denna omgång!");
@@ -78,13 +92,30 @@ public class RockPaperScissors {
 
     }
 
+    enum Tool { ROCK, PAPER, SCISSORS }
+
+    //converting guess to a valid tool
+    private static Tool tool(String input) {
+        return switch (input) {
+            case "s" -> Tool.ROCK;
+            case "x" -> Tool.SCISSORS;
+            case "p" -> Tool.PAPER;
+            default -> throw new RuntimeException();
+        };
+    }
+
     private static String selectTool(String playerInput) {
         return switch (playerInput) {
             case "s" -> "sten";
             case "x" -> "sax";
             case "p" -> "påse";
             default -> "ogiltigt";
+            //String har många flera kombinationer som måste hanteras eller testa att använda en enum
         };
+    }
+
+    public static void main(String[] args) {
+        play();
     }
 
 }
