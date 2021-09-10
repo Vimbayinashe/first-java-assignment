@@ -41,7 +41,6 @@ public class RockPaperScissors {
         String[] options = {"s", "x", "p"};
         Random random = new Random();
 
-
         while (computerScore < 3 && playerScore < 3) {
             System.out.println("Välj sten, sax eller påse...");
 
