@@ -47,8 +47,12 @@ public class MinMax {
                 maximum = number;
         }
 
+        printResult(maximum, minimum);
+
+    }
+
+    private static void printResult(int maximum, int minimum) {
         System.out.println("Min value: " + minimum);
         System.out.println("Max value: " + maximum);
-
     }
 }

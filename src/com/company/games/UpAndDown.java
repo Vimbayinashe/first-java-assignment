@@ -37,6 +37,10 @@ public class UpAndDown {
                 words.add(input);
         }
 
+        printResult(words);
+    }
+
+    private static void printResult(ArrayList<String> words) {
         System.out.println("\nDina ord i omvänd ordning:");
         for (int i = words.size(); i > 0; i--) {
             System.out.println(words.get(i - 1));

@@ -57,7 +57,7 @@ public class SortAndOrder {
         sorted = isSorted(numbers);
         sortArrayOfIntegers(numbers);
         sum = sum(numbers);
-        print(sorted, sum, numbers);
+        printResult(sorted, sum, numbers);
 
     }
 
@@ -94,7 +94,7 @@ public class SortAndOrder {
         return true;
     }
 
-    private static void print(boolean sorted, int sum, int[] numbers) {
+    private static void printResult(boolean sorted, int sum, int[] numbers) {
         System.out.println("Min value: " + numbers[0]);
         System.out.println("Min2 value: " + numbers[1]);
         System.out.println("Max2 value: " + numbers[numbers.length - 2]);
