@@ -8,27 +8,19 @@ import com.company.games.UpAndDown;
 import java.util.Scanner;
 
 public class Main {
-//    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        boolean isPlaying;
         int selectedGame;
         String input;
-
         System.out.println("\nVälkommen till Det Roliga Spelet!!\n");
         displayOptions(false);
 
-
         while (true) {
-//            selectedGame = 0;
             input = scanner.nextLine();
             if ("e".equalsIgnoreCase(input)) {
-                System.out.println("Vi ses nästa gång!");
-//                isPlaying = false;
                 break;
             } else {
-//                isPlaying = true;
                 try {
                     selectedGame = Integer.parseInt(input);
                 } catch (NumberFormatException ignored) {
@@ -41,21 +33,10 @@ public class Main {
                 continue;
             }
 
-            switch (selectedGame) {
-                case 1 -> UpAndDown.start();
-                case 2 -> MinMax.start();
-                case 3 -> RockPaperScissors.start();
-                case 4 -> SortAndOrder.start();
-            }
-
+            playGame(selectedGame);
             displayOptions(false);
-
         }
 
-        //Todo: när körningen är klar ska menyn åter skrivas ut på skärmen så att ett nytt val kan göras => alltså
-        // spelet avslutas när man tryckt "e"
-
-        // place entire game in a separate method ?
     }
 
     public static void displayOptions(boolean invalid) {
@@ -63,7 +44,7 @@ public class Main {
             System.out.println("Ogiltigt val, försök igen!\n");
         System.out.println(
                 """           
-                        
+                                                
                         Vänligen skriv ett nummer för att välja ett spel eller tryck "e" för att avsluta.
                         1. Upp och Ner
                         2. Min Max
@@ -72,5 +53,14 @@ public class Main {
                         e. Avsluta
                         """
         );
+    }
+
+    private static void playGame(int selectedGame) {
+        switch (selectedGame) {
+            case 1 -> UpAndDown.start();
+            case 2 -> MinMax.start();
+            case 3 -> RockPaperScissors.start();
+            case 4 -> SortAndOrder.start();
+        }
     }
 }
