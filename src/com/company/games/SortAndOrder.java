@@ -11,6 +11,7 @@ public class SortAndOrder {
     public static void start() {
         System.out.println(
                 """
+                        
                         Välkommen till Ordning och Reda!
                                         
                         Vänligen skriv in 5 heltal med ett mellanslag mellan varje tal.
@@ -33,7 +34,6 @@ public class SortAndOrder {
         do {
             invalid = false;
             String input = scanner.nextLine();
-
             String[] numbersAsStrings = input.split(" ");
 
             if (numbersAsStrings.length != 5) {

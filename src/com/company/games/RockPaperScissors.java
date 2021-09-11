@@ -19,6 +19,7 @@ public class RockPaperScissors {
     private static void instructions() {
         System.out.println(
                 """
+                
                 Spela sten, sax eller påse!
                                 
                 Regler:

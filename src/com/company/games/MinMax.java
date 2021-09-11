@@ -13,8 +13,8 @@ public class MinMax {
     public static void start() {
         System.out.println(
                 """
-                Välkommen till Min Max!
                 
+                Välkommen till Min Max!
                 Vänligen skriv in 5 heltal (tryck ENTER efter varje tal).
                 """
         );

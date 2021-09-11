@@ -8,10 +8,11 @@ import com.company.games.UpAndDown;
 import java.util.Scanner;
 
 public class Main {
-    static Scanner scanner = new Scanner(System.in);
+//    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        boolean invalidGame;
+        Scanner scanner = new Scanner(System.in);
+        boolean isPlaying;
         int selectedGame;
         String input;
 
@@ -19,34 +20,36 @@ public class Main {
         displayOptions(false);
 
 
-        do {
-            selectedGame = 0;
+        while (true) {
+//            selectedGame = 0;
             input = scanner.nextLine();
             if ("e".equalsIgnoreCase(input)) {
-                invalidGame = false;
                 System.out.println("Vi ses nästa gång!");
+//                isPlaying = false;
+                break;
             } else {
+//                isPlaying = true;
                 try {
-                    invalidGame = false;
                     selectedGame = Integer.parseInt(input);
                 } catch (NumberFormatException ignored) {
                     displayOptions(true);
-                    invalidGame = true;
+                    continue;
                 }
             }
             if (selectedGame > 4 || "0".equals(input)) {
-                invalidGame = true;
                 displayOptions(true);
+                continue;
             }
 
-        } while (invalidGame);
+            switch (selectedGame) {
+                case 1 -> UpAndDown.start();
+                case 2 -> MinMax.start();
+                case 3 -> RockPaperScissors.start();
+                case 4 -> SortAndOrder.start();
+            }
 
+            displayOptions(false);
 
-        switch (selectedGame) {
-            case 1 -> UpAndDown.start();
-            case 2 -> MinMax.start();
-            case 3 -> RockPaperScissors.start();
-            case 4 -> SortAndOrder.start();
         }
 
         //Todo: när körningen är klar ska menyn åter skrivas ut på skärmen så att ett nytt val kan göras => alltså
@@ -59,14 +62,15 @@ public class Main {
         if (invalid)
             System.out.println("Ogiltigt val, försök igen!\n");
         System.out.println(
-            """           
-            Vänligen skriv ett nummer för att välja ett spel eller tryck "e" för att avsluta.
-            1. Upp och Ner
-            2. Min Max
-            3. Sten Sax Påse
-            4. Ordning och reda
-            e. Avsluta
-            """
+                """           
+                        
+                        Vänligen skriv ett nummer för att välja ett spel eller tryck "e" för att avsluta.
+                        1. Upp och Ner
+                        2. Min Max
+                        3. Sten Sax Påse
+                        4. Ordning och reda
+                        e. Avsluta
+                        """
         );
     }
 }

@@ -11,6 +11,7 @@ public class UpAndDown {
     public static void start() {
         System.out.println(
             """
+            
             Välkommen till upp och ner!
             
             Instruktioner:
