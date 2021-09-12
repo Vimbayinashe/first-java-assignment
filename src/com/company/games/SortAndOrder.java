@@ -32,7 +32,7 @@ public class SortAndOrder {
         int minimum;
         int nextMaximum;
         int nextMinimum;
-        int sum = 0;
+        int sum;
         int[] numbers = new int[5];
 
         do {
@@ -59,22 +59,13 @@ public class SortAndOrder {
         } while (invalid);
 
         maximum = maximum(numbers);
-        System.out.println("Maximum is: " + maximum);
-
         nextMaximum = nextMaximum(numbers, maximum);
-        System.out.println("Max2 value: " + nextMaximum);
-
         minimum = minimum(numbers);
-        System.out.println("Minimum is: " + minimum);
-
         nextMinimum = nextMinimum(numbers, minimum);
-        System.out.println("Min2 value: " + nextMinimum);
-
-
         sorted = isSorted(numbers);
-        sortArrayOfIntegers(numbers);
         sum = sum(numbers);
-        printResult(sorted, sum, numbers);
+
+        printResults(minimum, nextMinimum, maximum, nextMaximum, sorted, sum);
 
     }
 
@@ -122,23 +113,6 @@ public class SortAndOrder {
         return sum;
     }
 
-    //todo: replace this method
-    private static void sortArrayOfIntegers(int[] numbers) {
-        for (int i = 0; i < numbers.length; i++) {
-
-            for (int j = i + 1; j < numbers.length; j++) {
-
-                if (numbers[i] > numbers[j]) {
-                    int placeholder = numbers[i];
-                    numbers[i] = numbers[j];
-                    numbers[j] = placeholder;
-                }
-
-            }
-
-        }
-    }
-
     private static boolean isSorted(int[] numbers) {
         for (int i = 0; i < numbers.length - 1; i++) {
             if (numbers[i] > numbers[i + 1]) {
@@ -148,14 +122,14 @@ public class SortAndOrder {
         return true;
     }
 
-    //todo: how many arguments shall "printResult" take?
-    private static void printResult(boolean sorted, int sum, int[] numbers) {
-        System.out.println("Min value: " + numbers[0]);
-        System.out.println("Min2 value: " + numbers[1]);
-        System.out.println("Max2 value: " + numbers[numbers.length - 2]);
-        System.out.println("Max value: " + numbers[numbers.length - 1]);
-        System.out.println("I ordning: " + sorted);
-        System.out.println("Summa: " + sum);
+    private static void printResults(Object... objects) {
+        System.out.println("Minsta talet: " + objects[0]);
+        System.out.println("Näst minsta talet: " + objects[1]);
+        System.out.println("Största talet: " + objects[2]);
+        System.out.println("Näst största talet: " + objects[3]);
+        System.out.println("I ordning: " + objects[4]);
+        System.out.println("Summa: " + objects[5]);
     }
+
 }
 
