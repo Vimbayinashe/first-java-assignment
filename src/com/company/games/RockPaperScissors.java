@@ -7,33 +7,9 @@ public class RockPaperScissors {
 
     static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        start();
-    }
-
     public static void start() {
-        instructions();
+        printInstructions();
         play();
-    }
-
-    private static void instructions() {
-        System.out.println(
-                """
-                
-                Spela sten, sax eller påse!
-                                
-                Regler:
-                Du spelar mot datorn och först till 3 vinster vinner.
-                Sten vinner över sax.
-                Sax vinner över påse.
-                Påse vinner över sten.
-                                
-                Tryck S, X eller P för att välja:
-                S - sten
-                X - sax
-                P - påse
-                """
-        );
     }
 
     private static void play() {
@@ -128,6 +104,30 @@ public class RockPaperScissors {
             System.out.println("Datorn har vunnit spelet!");
         else
             System.out.println("Grattis! Du har vunnit spelet!");
+    }
+
+    private static void printInstructions() {
+        System.out.println(
+                """
+                
+                Spela sten, sax eller påse!
+                                
+                Regler:
+                Du spelar mot datorn och först till 3 vinster vinner.
+                Sten vinner över sax.
+                Sax vinner över påse.
+                Påse vinner över sten.
+                                
+                Tryck S, X eller P för att välja:
+                S - sten
+                X - sax
+                P - påse
+                """
+        );
+    }
+
+    public static void main(String[] args) {
+        start();
     }
 
 }

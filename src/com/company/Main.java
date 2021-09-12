@@ -9,16 +9,20 @@ import java.util.Scanner;
 
 public class Main {
 
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         int selectedGame;
         String input;
-        System.out.println("\nVälkommen till Det Roliga Spelet!!\n");
+
+        printGreeting();
         displayOptions(false);
 
         while (true) {
             input = scanner.nextLine();
+
             if ("e".equalsIgnoreCase(input)) {
+                printFarewell();
                 break;
             } else {
                 try {
@@ -39,6 +43,19 @@ public class Main {
 
     }
 
+    private static void playGame(int selectedGame) {
+        switch (selectedGame) {
+            case 1 -> UpAndDown.start();
+            case 2 -> MinMax.start();
+            case 3 -> RockPaperScissors.start();
+            case 4 -> SortAndOrder.start();
+        }
+    }
+
+    private static void printGreeting() {
+        System.out.println("\nVälkommen till Det Roliga Spelet!!\n");
+    }
+
     public static void displayOptions(boolean invalid) {
         if (invalid)
             System.out.println("Ogiltigt val, försök igen!\n");
@@ -55,12 +72,7 @@ public class Main {
         );
     }
 
-    private static void playGame(int selectedGame) {
-        switch (selectedGame) {
-            case 1 -> UpAndDown.start();
-            case 2 -> MinMax.start();
-            case 3 -> RockPaperScissors.start();
-            case 4 -> SortAndOrder.start();
-        }
+    private static void printFarewell() {
+        System.out.println("\nVi ses nästa gång!");
     }
 }

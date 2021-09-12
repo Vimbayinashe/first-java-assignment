@@ -4,28 +4,14 @@ import java.util.Scanner;
 
 public class SortAndOrder {
 
-    public static void main(String[] args) {
-        start();
-    }
+    static Scanner scanner = new Scanner(System.in);
 
     public static void start() {
-        System.out.println(
-                """
-                        
-                        Välkommen till Ordning och Reda!
-                                        
-                        Vänligen skriv in 5 heltal med ett mellanslag mellan varje tal.
-                        (t.ex. 5 15 -5 0 23)
-                        Tryck ENTER när du är klar.
-                        """
-        );
-
+        printInstructions();
         play();
-
     }
 
     private static void play() {
-        Scanner scanner = new Scanner(System.in);
         boolean invalid;
         boolean sorted;
         int maximum;
@@ -98,8 +84,8 @@ public class SortAndOrder {
 
     private static int nextMinimum(int[] numbers, int minimum) {
         int nextMinimum = Integer.MAX_VALUE;
-        for (int number: numbers) {
-            if(minimum < number && number < nextMinimum)
+        for (int number : numbers) {
+            if (minimum < number && number < nextMinimum)
                 nextMinimum = number;
         }
         return nextMinimum;
@@ -107,7 +93,7 @@ public class SortAndOrder {
 
     private static int sum(int[] numbers) {
         int sum = 0;
-        for (int number: numbers) {
+        for (int number : numbers) {
             sum += number;
         }
         return sum;
@@ -129,6 +115,23 @@ public class SortAndOrder {
         System.out.println("Näst största talet: " + objects[3]);
         System.out.println("I ordning: " + objects[4]);
         System.out.println("Summa: " + objects[5]);
+    }
+
+    private static void printInstructions() {
+        System.out.println(
+                """
+                                                
+                        Välkommen till Ordning och Reda!
+                                        
+                        Vänligen skriv in 5 heltal med ett mellanslag mellan varje tal.
+                        (t.ex. 5 15 -5 0 23)
+                        Tryck ENTER när du är klar.
+                        """
+        );
+    }
+
+    public static void main(String[] args) {
+        start();
     }
 
 }

@@ -4,23 +4,12 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MinMax {
+
     static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        start();
-    }
-
     public static void start() {
-        System.out.println(
-                """
-                
-                Välkommen till Min Max!
-                Vänligen skriv in 5 heltal (tryck ENTER efter varje tal).
-                """
-        );
-
+        printInstructions();
         play();
-
     }
 
     private static void play() {
@@ -54,5 +43,19 @@ public class MinMax {
     private static void printResult(int maximum, int minimum) {
         System.out.println("Min value: " + minimum);
         System.out.println("Max value: " + maximum);
+    }
+
+    private static void printInstructions() {
+        System.out.println(
+                """
+                
+                Välkommen till Min Max!
+                Vänligen skriv in 5 heltal (tryck ENTER efter varje tal).
+                """
+        );
+    }
+
+    public static void main(String[] args) {
+        start();
     }
 }

@@ -7,19 +7,8 @@ public class UpAndDown {
     static Scanner scanner = new Scanner(System.in);
 
     public static void start() {
-        System.out.println(
-                """
-                                    
-                        Välkommen till upp och ner!
-                                    
-                        Instruktioner:
-                         - Skriv in ett antal ord och tryck ENTER mellan varje ord.
-                         - Skriv END när du är klar.
-                        """
-        );
-
+        printInstructions();
         play();
-
     }
 
     private static void play() {
@@ -57,6 +46,19 @@ public class UpAndDown {
             if (words[i] != null)
                 System.out.println(words[i]);
         }
+    }
+
+    private static void printInstructions() {
+        System.out.println(
+                """
+                                    
+                        Välkommen till upp och ner!
+                                    
+                        Instruktioner:
+                         - Skriv in ett antal ord och tryck ENTER mellan varje ord.
+                         - Skriv END när du är klar.
+                        """
+        );
     }
 
     public static void main(String[] args) {
