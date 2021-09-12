@@ -16,7 +16,7 @@ public class Main {
         String input;
 
         printGreeting();
-        displayOptions(false);
+        printGameOptions(false);
 
         while (true) {
             input = scanner.nextLine();
@@ -28,17 +28,17 @@ public class Main {
                 try {
                     selectedGame = Integer.parseInt(input);
                 } catch (NumberFormatException ignored) {
-                    displayOptions(true);
+                    printGameOptions(true);
                     continue;
                 }
             }
             if (selectedGame > 4 || "0".equals(input)) {
-                displayOptions(true);
+                printGameOptions(true);
                 continue;
             }
 
             playGame(selectedGame);
-            displayOptions(false);
+            printGameOptions(false);
         }
 
     }
@@ -56,7 +56,7 @@ public class Main {
         System.out.println("\nVälkommen till Det Roliga Spelet!!\n");
     }
 
-    public static void displayOptions(boolean invalid) {
+    public static void printGameOptions(boolean invalid) {
         if (invalid)
             System.out.println("Ogiltigt val, försök igen!\n");
         System.out.println(
