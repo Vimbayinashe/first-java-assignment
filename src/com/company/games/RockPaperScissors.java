@@ -34,12 +34,13 @@ public class RockPaperScissors {
             String computerInput = options[random.nextInt(3)];
             Tool computerChoice = selectTool(computerInput);
 
-            boolean computerWins = computerWins(computerChoice, playerChoice);
+            boolean computerWins = isWinner(computerChoice, playerChoice);
+            boolean playerWins = isWinner(playerChoice, computerChoice);
             boolean draw = computerChoice.equals(playerChoice);
 
             if (computerWins)
                 ++computerScore;
-            else
+            else if(playerWins)
                 ++playerScore;
 
             printChoices(playerChoice, computerChoice);
@@ -63,10 +64,16 @@ public class RockPaperScissors {
         };
     }
 
-    private static boolean computerWins(Tool computerChoice, Tool playerChoice) {
-        return computerChoice.equals(Tool.ROCK) && playerChoice.equals(Tool.SCISSORS) ||
-                computerChoice.equals(Tool.SCISSORS) && playerChoice.equals(Tool.PAPER) ||
-                computerChoice.equals(Tool.PAPER) && playerChoice.equals(Tool.ROCK);
+    /**
+     * Calculates if a player (computer or user) has won a round of the game
+     * @param choice a tool selected by the player
+     * @param opponentsChoice a tool selected by the opponent
+     * @return true if the player wins
+     */
+    private static boolean isWinner(Tool choice, Tool opponentsChoice) {
+        return choice.equals(Tool.ROCK) && opponentsChoice.equals(Tool.SCISSORS) ||
+                choice.equals(Tool.SCISSORS) && opponentsChoice.equals(Tool.PAPER) ||
+                choice.equals(Tool.PAPER) && opponentsChoice.equals(Tool.ROCK);
     }
 
     private static String toolInSwedish(Tool tool) {
