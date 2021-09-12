@@ -30,6 +30,8 @@ public class SortAndOrder {
         boolean sorted;
         int maximum;
         int minimum;
+        int nextMaximum;
+        int nextMinimum;
         int sum = 0;
         int[] numbers = new int[5];
 
@@ -59,8 +61,12 @@ public class SortAndOrder {
         maximum = maximum(numbers);
         System.out.println("Maximum is: " + maximum);
 
+        nextMaximum = nextMaximum(numbers, maximum);
+        System.out.println("Max2: " + nextMaximum);
+
         minimum = minimum(numbers);
         System.out.println("Minimum is: " + minimum);
+
 
         sorted = isSorted(numbers);
         sortArrayOfIntegers(numbers);
@@ -76,6 +82,15 @@ public class SortAndOrder {
                 maximum = number;
         }
         return maximum;
+    }
+
+    private static int nextMaximum(int[] numbers, int maximum) {
+        int nextMaximum = Integer.MIN_VALUE;
+        for (int number : numbers) {
+            if (nextMaximum < number && number < maximum)
+                nextMaximum = number;
+        }
+        return nextMaximum;
     }
 
     private static int minimum(int[] numbers) {
