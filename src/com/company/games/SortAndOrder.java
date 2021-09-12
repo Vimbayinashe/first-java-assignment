@@ -28,6 +28,8 @@ public class SortAndOrder {
         Scanner scanner = new Scanner(System.in);
         boolean invalid;
         boolean sorted;
+        int maximum;
+        int minimum;
         int sum = 0;
         int[] numbers = new int[5];
 
@@ -54,11 +56,35 @@ public class SortAndOrder {
 
         } while (invalid);
 
+        maximum = maximum(numbers);
+        System.out.println("Maximum is: " + maximum);
+
+        minimum = minimum(numbers);
+        System.out.println("Minimum is: " + minimum);
+
         sorted = isSorted(numbers);
         sortArrayOfIntegers(numbers);
         sum = sum(numbers);
         printResult(sorted, sum, numbers);
 
+    }
+
+    private static int maximum(int[] numbers) {
+        int maximum = Integer.MIN_VALUE;
+        for (int number : numbers) {
+            if (number > maximum)
+                maximum = number;
+        }
+        return maximum;
+    }
+
+    private static int minimum(int[] numbers) {
+        int minimum = Integer.MAX_VALUE;
+        for (int number : numbers) {
+            if (number < minimum)
+                minimum = number;
+        }
+        return minimum;
     }
 
     private static int sum(int[] numbers) {
@@ -69,6 +95,7 @@ public class SortAndOrder {
         return sum;
     }
 
+    //todo: replace this method
     private static void sortArrayOfIntegers(int[] numbers) {
         for (int i = 0; i < numbers.length; i++) {
 
@@ -94,6 +121,7 @@ public class SortAndOrder {
         return true;
     }
 
+    //todo: how many arguments shall "printResult" take?
     private static void printResult(boolean sorted, int sum, int[] numbers) {
         System.out.println("Min value: " + numbers[0]);
         System.out.println("Min2 value: " + numbers[1]);

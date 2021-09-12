@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UpAndDown {
-    //Todo: is the main method needed?
 
     static Scanner scanner = new Scanner(System.in);
 
